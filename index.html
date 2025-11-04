@@ -198,6 +198,79 @@
             box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
         }
 
+        /* ---------- LIVE TABLE SECTION ---------- */
+        #live-status {
+            padding: 40px 0;
+            background: #fff8e1;
+            text-align: center;
+        }
+
+        #live-status h2 {
+            color: #b71c1c;
+            font-family: 'Noto Sans Malayalam', 'Poppins', sans-serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #statusTable {
+            width: 90%;
+            max-width: 700px;
+            margin: auto;
+            border-collapse: collapse;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        #statusTable thead {
+            background: linear-gradient(90deg, #ffeb3b, #ffcc00);
+            color: #000;
+        }
+
+        #statusTable th, #statusTable td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        #statusTable tbody tr:nth-child(even) {
+            background-color: #fff9c4;
+        }
+
+        #statusTable tbody tr:nth-child(odd) {
+            background-color: #fffde7;
+        }
+
+        #statusTable td:first-child {
+            font-weight: 600;
+            color: #0d47a1;
+        }
+
+        #statusTable td:nth-child(2) {
+            color: #2e7d32;
+        }
+
+        #statusTable td:nth-child(3) {
+            color: #b71c1c;
+        }
+
+        #statusTable td:nth-child(4) {
+            color: #000;
+        }
+
+        #statusTable tr:last-child {
+            background-color: #d32f2f;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #lastUpdated {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            padding: 10px;
+        }
+
         @media (max-width: 768px) {
             .card, .event-card, .order-card {
                 width: 90%;
@@ -245,9 +318,81 @@
         </div>
     </div>
 
+    <!-- ✅ LIVE STATUS TABLE SECTION -->
+    <section id="live-status">
+        <h2>📊 തത്സമയ മത്സര നില (Live Status)</h2>
+        <table id="statusTable">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Completed</th>
+                    <th>Remaining</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data loads here -->
+            </tbody>
+        </table>
+        <div id="lastUpdated">Loading latest data...</div>
+    </section>
+
     <footer>
         &copy; 2025 Kerala School Kalolsavam | Designed by Vasu K K
     </footer>
+
+    <script>
+  // ✅ Your Google Sheet CSV link
+    const proxy = "https://api.allorigins.win/raw?url=";
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQzpwMl95x8-QSq5OBMPq6RzXcrm8CEppa7aux-TTMO4vCH1U2BkUGsJBZevR0s4tEzLFMfS0JMaZVf/pub?gid=0&single=true&output=csv";
+
+    async function loadTable() {
+        const tbody = document.querySelector("#statusTable tbody");
+        const lastUpdated = document.getElementById("lastUpdated");
+
+        try {
+            const response = await fetch(proxy + encodeURIComponent(sheetURL) + "&t=" + new Date().getTime());
+            if (!response.ok) throw new Error("Failed to fetch data");
+
+            const text = await response.text();
+            const rows = text.trim().split("\n").map(r => r.split(","));
+            tbody.innerHTML = "";
+
+            for (let i = 1; i < rows.length; i++) {
+                const [item, completed, remaining, total] = rows[i];
+                if (!item) continue;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${item}</td>
+                    <td>${completed}</td>
+                    <td>${remaining}</td>
+                    <td>${total}</td>
+                `;
+                if (item.toLowerCase().includes("total")) {
+                    tr.style.backgroundColor = "#d32f2f";
+                    tr.style.color = "#fff";
+                    tr.style.fontWeight = "bold";
+                }
+                tbody.appendChild(tr);
+            }
+
+            lastUpdated.textContent = "Last updated: " + new Date().toLocaleTimeString();
+        } catch (err) {
+            console.error("Error loading data:", err);
+            tbody.innerHTML = "<tr><td colspan='4'>⚠️ Failed to load data</td></tr>";
+            lastUpdated.textContent = "Failed to load data.";
+        }
+    }
+
+
+    // Load fresh data every time the page is opened
+    window.addEventListener("DOMContentLoaded", loadTable);
+
+    // Refresh automatically every 60 seconds
+    setInterval(loadTable, 60000);
+    </script>
+
 
 </body>
 </html>
