@@ -21,8 +21,16 @@
         }
 
         header img {
-            height: 110px;
+            max-width: 100%;
+            height: auto;
             width: auto;
+            max-height: 110px; /* Keeps it from growing too tall on large screens */
+        }
+
+        @media (max-width: 768px) {
+            header img {
+                max-height: 80px;
+            }
         }
 
         .title {
@@ -37,6 +45,29 @@
         }
 
         /* ---------- NAVIGATION ---------- */
+        nav a {
+            background: linear-gradient(145deg, #e0f2ff, #b3daff);
+            color: #003366;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 18px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background: #ffcc00;
+            color: #00264d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+
+
         nav {
             display: flex;
             justify-content: center;
@@ -120,6 +151,22 @@
             margin: 13px;
             font-size: 1.3em;
         }
+
+        .card a {
+            color: inherit;              /* Inherit the yellow color from the .card */
+            text-decoration: none;       /* Remove underline */
+            display: inline-block;       /* Keeps it neat for image + heading */
+        }
+
+        .card a:visited {
+            color: inherit;              /* Prevent purple color after visiting */
+        }
+
+        .card a:hover {
+            text-decoration: none;
+            color: #ffdd57;              /* Keep or adjust hover color (same yellow here) */
+        }
+
 
         /* ---------- EVENT CARD (TOP BOX) ---------- */
         .event-card {
@@ -247,11 +294,11 @@
         }
 
         #statusTable td:nth-child(2) {
-            color: #2e7d32;
+            color: #000000;
         }
 
         #statusTable td:nth-child(3) {
-            color: #b71c1c;
+            color: #000000;
         }
 
         #statusTable td:nth-child(4) {
@@ -259,7 +306,7 @@
         }
 
         #statusTable tr:last-child {
-            background-color: #d32f2f;
+            background-color: #2f9cd3;
             color: #fff;
             font-weight: bold;
         }
@@ -287,19 +334,20 @@
     <div class="title">പീരുമേട് ഉപജില്ലാ മത്സര ഫലങ്ങൾ</div>
 
     <nav>
-        <button onclick="location.href='lp_general.html'">LP General</button>
-        <button onclick="location.href='up_general.html'">UP General</button>
-        <button onclick="location.href='hs_general.html'">HS General</button>
-        <button onclick="location.href='hss_general.html'">HSS General</button>
-        <button onclick="location.href='lp_arabic.html'">LP Arabic</button>
-        <button onclick="location.href='up_arabic.html'">UP Arabic</button>
-        <button onclick="location.href='up_sanskrit.html'">UP Sanskrit</button>
+        <a href="https://drive.google.com/drive/folders/1XdDpgChcn4ixA9fSeJZ-JcoF_In5Mjyg" target="_blank" rel="noopener noreferrer">LP General</a>
+        <a href="https://drive.google.com/drive/folders/1jJpuBAzsygxpjIzPfw6nx9ptGCe2hfUi" target="_blank" rel="noopener noreferrer">UP General</a>
+        <a href="https://drive.google.com/drive/folders/1N2cm8NqO9VlvppkOBjPVpaahdRdC5Wb7" target="_blank" rel="noopener noreferrer">HS General</a>
+        <a href="https://drive.google.com/drive/folders/1FnFyPD8CsPsh5H80n_szfEUdY0fA6XU9" target="_blank" rel="noopener noreferrer">HSS General</a>
+        <a href="https://drive.google.com/drive/folders/14MvY0TFR-hRj-LL4vH1mg5YpQj8mZGGZ" target="_blank" rel="noopener noreferrer">LP Arabic</a>
+        <a href="https://drive.google.com/drive/folders/14xQjnXsw1hBYZ6Uc0txhMhxXmOeVwGq8" target="_blank" rel="noopener noreferrer">UP Arabic</a>
+        <a href="https://drive.google.com/drive/folders/1goc7iup1vdbpXSPu9CywF37fBCeIcjlB" target="_blank" rel="noopener noreferrer">UP Sanskrit</a>
     </nav>
+
 
     <div class="main-section">
         <div class="card">
-            <h2>School Wise Points Report</h2>
-            <a href="points_report.html">
+            <a href="https://drive.google.com/drive/folders/1f03ph10v1ycG5Kc8IlhU9M0TISBwEgUR" target="_blank" rel="noopener noreferrer">
+                <h2>School Wise Points Report</h2>
                 <img src="trophy.png" alt="Trophy Image">
             </a>
         </div>
@@ -313,7 +361,7 @@
             </div>
 
             <div class="order-card">
-                <a href="https://keralaschools.gov.in" target="_blank">Click Here<br>Order of Events</a>
+                <a href="https://drive.google.com/drive/folders/1RicNOmQwTnCd6q8IxsZIpW4D9v3IXgUp" target="_blank">Click Here<br>Order of Events</a>
             </div>
         </div>
     </div>
@@ -338,12 +386,12 @@
     </section>
 
     <footer>
-        &copy; 2025 Kerala School Kalolsavam | Designed by Vasu K K
+        &copy; 2025 Peermedu Sub-District Kalolsavam | Designed by Vasu K K
     </footer>
 
     <script>
   // ✅ Your Google Sheet CSV link
-    const proxy = "https://api.allorigins.win/raw?url=";
+    const proxy = "https://dry-dream-1e71.kvdevanandan6.workers.dev?url=";
     const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQzpwMl95x8-QSq5OBMPq6RzXcrm8CEppa7aux-TTMO4vCH1U2BkUGsJBZevR0s4tEzLFMfS0JMaZVf/pub?gid=0&single=true&output=csv";
 
     async function loadTable() {
@@ -370,7 +418,7 @@
                     <td>${total}</td>
                 `;
                 if (item.toLowerCase().includes("total")) {
-                    tr.style.backgroundColor = "#d32f2f";
+                    tr.style.backgroundColor = "#2f9cd3";
                     tr.style.color = "#fff";
                     tr.style.fontWeight = "bold";
                 }
@@ -380,7 +428,7 @@
             lastUpdated.textContent = "Last updated: " + new Date().toLocaleTimeString();
         } catch (err) {
             console.error("Error loading data:", err);
-            tbody.innerHTML = "<tr><td colspan='4'>⚠️ Failed to load data</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='4'>⚠️ Failed to load data (Fetched every 1 minute)</td></tr>";
             lastUpdated.textContent = "Failed to load data.";
         }
     }
@@ -390,7 +438,7 @@
     window.addEventListener("DOMContentLoaded", loadTable);
 
     // Refresh automatically every 60 seconds
-    setInterval(loadTable, 60000);
+    setInterval(loadTable, 10000);
     </script>
 
 
