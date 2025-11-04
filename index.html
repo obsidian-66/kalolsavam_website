@@ -15,11 +15,17 @@
             background-color: white;
             text-align: center;
             padding: 10px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         header img {
             height: 100px;
-            margin: 10px;
+            margin: 5px;
+            max-width: 100%;
+            height: auto;
         }
 
         .title {
@@ -34,6 +40,7 @@
         nav {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             background-color: #00114d;
             padding: 10px;
         }
@@ -44,10 +51,15 @@
             font-weight: bold;
             border: 2px solid red;
             border-radius: 5px;
-            margin: 3px;
+            margin: 5px;
             padding: 10px 15px;
             cursor: pointer;
             font-size: 1em;
+            transition: 0.3s;
+        }
+
+        nav button:hover {
+            background-color: #ffda00;
         }
 
         .main-section {
@@ -71,10 +83,15 @@
         }
 
         .card img {
-            width: 50%;
+            width: 80%;
             border-bottom: 2px solid yellow;
-            height: 220px;
+            height: auto;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card img:hover {
+            transform: scale(1.05);
         }
 
         .card h2 {
@@ -84,12 +101,13 @@
 
         .event-card {
             width: 400px;
+            max-width: 90%;
             background: linear-gradient(to bottom right, #00bfff, #007bff);
             text-align: center;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0,0,0,0.3);
             color: red;
-            padding: 10px;
+            padding: 15px;
             font-weight: bold;
         }
 
@@ -108,12 +126,19 @@
             background-color: yellow;
             color: blue;
             text-decoration: none;
-            font-size: 1.5em;
+            font-size: 1.2em;
             border: 2px solid red;
-            padding: 5px 10px;
+            padding: 8px 15px;
             border-radius: 8px;
             display: inline-block;
             margin-top: 10px;
+        }
+
+        .event-card a:hover {
+            background-color: red;
+            color: white;
+            transform: scale(1.05);
+            transition: 0.2s;
         }
 
         footer {
@@ -123,12 +148,69 @@
             padding: 10px;
             font-size: 0.9em;
         }
+
+        /* ---------------- Responsive Section ---------------- */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+
+            nav button {
+                font-size: 0.9em;
+                padding: 8px 10px;
+            }
+
+            .card {
+                width: 90%;
+            }
+
+            .event-card {
+                width: 90%;
+            }
+
+            header img {
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 1.3em;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav button {
+                width: 80%;
+                margin: 5px 0;
+            }
+
+            .card h2 {
+                font-size: 1em;
+            }
+
+            .event-card h2, .event-card h3 {
+                font-size: 1.1em;
+            }
+
+            .event-card a {
+                font-size: 1em;
+                padding: 6px 10px;
+            }
+
+            footer {
+                font-size: 0.8em;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <!-- Replace with your own header images -->
         <img src="header_left.jpg" alt="Header Left Image">
         <img src="logo.jpg" alt="Main Logo">
         <img src="header_right.jpg" alt="Header Right Image">
@@ -137,20 +219,18 @@
     <div class="title">പീരുമേട് ഉപജില്ലാ മത്സര ഫലങ്ങൾ</div>
 
     <nav>
-    	<button onclick="location.href='lp_general.html'">LP General</button>
-    	<button onclick="location.href='up_general.html'">UP General</button>
-    	<button onclick="location.href='hs_general.html'">HS General</button>
-    	<button onclick="location.href='hss_general.html'">HSS General</button>
-    	<button onclick="location.href='lp_arabic.html'">LP Arabic</button>
-    	<button onclick="location.href='up_arabic.html'">UP Arabic</button>
-    	<button onclick="location.href='up_sanskrit.html'">UP Sanskrit</button>
+        <button onclick="location.href='lp_general.html'">LP General</button>
+        <button onclick="location.href='up_general.html'">UP General</button>
+        <button onclick="location.href='hs_general.html'">HS General</button>
+        <button onclick="location.href='hss_general.html'">HSS General</button>
+        <button onclick="location.href='lp_arabic.html'">LP Arabic</button>
+        <button onclick="location.href='up_arabic.html'">UP Arabic</button>
+        <button onclick="location.href='up_sanskrit.html'">UP Sanskrit</button>
     </nav>
-
 
     <div class="main-section">
         <div class="card">
             <h2>School Wise Points Report</h2>
-            <!-- Replace with trophy image -->
             <a href="points_report.html">
                 <img src="trophy.png" alt="Trophy Image">
             </a>
@@ -159,7 +239,7 @@
         <div class="event-card">
             <h2>GHSS, GHS, GUPS ELAPPARA</h2>
             <h3>2025 NOVEMBER 3 TO 7</h3>
-            <a href="https://keralaschools.gov.in">Click Here<br>Order of Events</a>
+            <a href="https://keralaschools.gov.in" target="_blank">Click Here<br>Order of Events</a>
         </div>
     </div>
 
